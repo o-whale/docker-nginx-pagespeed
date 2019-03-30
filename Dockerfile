@@ -38,7 +38,8 @@ RUN apt-get install -y \
         libaprutil1-dev \
         linux-headers-amd64 \
         libjpeg62-turbo-dev \
-        libcurl4-openssl-dev
+        libcurl4-openssl-dev \
+        libpam-dev
 
 # Build libpng
 RUN cd /tmp && \
@@ -61,7 +62,8 @@ RUN cd /tmp/incubator-pagespeed-ngx-${PAGESPEED_VERSION}-stable/ && \
 RUN cd /tmp && \
         git clone git://github.com/vozlt/nginx-module-vts.git && \
         git clone https://github.com/openresty/headers-more-nginx-module.git && \
-        git clone git://github.com/yaoweibin/ngx_http_substitutions_filter_module.git
+        git clone git://github.com/yaoweibin/ngx_http_substitutions_filter_module.git && \
+        git clone https://github.com/sto/ngx_http_auth_pam_module.git
 
 # Build Nginx with support for PageSpeed
 RUN cd /tmp && \
@@ -101,6 +103,7 @@ RUN cd /tmp && \
         --add-module=/tmp/nginx-module-vts \
         --add-module=/tmp/headers-more-nginx-module \
         --add-module=/tmp/ngx_http_substitutions_filter_module \
+        --add-module=/tmp/ngx_http_auth_pam_module \
         --add-module=/tmp/incubator-pagespeed-ngx-${PAGESPEED_VERSION}-stable && \
         make install --silent
 

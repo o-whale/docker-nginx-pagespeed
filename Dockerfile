@@ -1,14 +1,10 @@
 FROM debian:stretch-slim
+LABEL maintainer="Bluewhale <blue@owhale.com>"
 
 ARG MAKE_J=4
-ARG NGINX_VERSION=1.14.0
+ARG NGINX_VERSION=1.14.2
 ARG PAGESPEED_VERSION=1.13.35.2
-ARG LIBPNG_VERSION=1.6.29
-
-ENV MAKE_J=${MAKE_J} \
-        NGINX_VERSION=${NGINX_VERSION} \
-        LIBPNG_VERSION=${LIBPNG_VERSION} \
-        PAGESPEED_VERSION=${PAGESPEED_VERSION}
+ARG LIBPNG_VERSION=1.6.36
 
 RUN apt-get update -y && \
         apt-get upgrade -y

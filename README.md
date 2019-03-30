@@ -1,6 +1,6 @@
-# Docker Nginx + PageSpeed + GEO IP
- 
-This docker image based on Debian Stretch linux distribution. 
+# Docker Nginx + PageSpeed
+
+This docker image based on Debian Stretch linux distribution.
 Project goal is an easy to build docker image of latest Nginx web server with Google PageSpeed and Geo IP modules.
 
 ## PageSpeed
@@ -12,9 +12,6 @@ The [PageSpeed](https://developers.google.com/speed/pagespeed/) tools analyze an
 The [VTS](https://github.com/vozlt/nginx-module-vts) Nginx virtual host traffic status module. It exposes a status page at:
 
 - ```http://localhost:8080/status/```
-
-## GeoIP
-The [GeoIP](https://www.maxmind.com/en/geoip-demo) databases to help decode remote IP address into geographical location.
 
 ## More Headers
 The [more_set_headers] (https://github.com/openresty/headers-more-nginx-module)allows to set more HTTP response headers - useful in multi cluster environments.

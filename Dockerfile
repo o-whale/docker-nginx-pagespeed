@@ -130,7 +130,7 @@ COPY ./scripts                    /usr/local/bin/
 
 RUN chmod +x /usr/local/bin/*
 
-EXPOSE 80 8080
+EXPOSE 80 8080 443
 WORKDIR /etc/nginx
 
 HEALTHCHECK --interval=5s --timeout=5s CMD curl -I http://127.0.0.1:8080/health || exit 1

@@ -19,6 +19,8 @@ run*)
       --network local \
       --env-file .env \
       -u root \
+      -v $(pwd)/data/letsencrypt:/etc/letsencrypt \
+      -v $(pwd)/data:/data \
       -p 8080:8080 \
       -p 80:80 \
       -p 443:443 \

@@ -1,4 +1,4 @@
-# Docker Nginx + PageSpeed
+# Docker Nginx + PageSpeed + Let's Encrypt
 
 This docker image based on Debian Stretch linux distribution.
 Project goal is an easy to build docker image of latest Nginx web server with Google PageSpeed and Geo IP modules.
@@ -40,16 +40,8 @@ Nginx is configured by default for high performance, multi cluster production en
 
 ### Configuration
 
-Example docker-compose.yml uses default environment variables:
-
-```env
-MAKE_J=4
-NGINX_VERSION=1.13.3
-PAGESPEED_VERSION=1.12.34.2
-LIBPNG_VERSION=1.6.29
-
 ### add path to include extra configuration files : (default: off)
-NGINX_INCLUDE_PATH=/app/config/nginx/*.conf
+NGINX_INCLUDE_PATH=/data/*.conf
 
 ### Include default server definition with health check: on|off (default: on)
 NGINX_DEFAULT_SERVER=on

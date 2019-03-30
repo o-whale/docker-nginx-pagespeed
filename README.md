@@ -41,4 +41,4 @@ as well as:
 - vhosts stats page
 - default host with health check
 
-Nginx is configured by default for high performance, multi cluster production environment, but can be easily adjusted with environment variables. Check [.env-example](https://github.com/o-whale/docker-nginx-pagespeed/blob/master/.env-example)
+Nginx is configured by default for high performance, multi cluster production environment, but can be easily adjusted with environment variables. Check [.env](https://github.com/o-whale/docker-nginx-pagespeed/blob/master/.env)

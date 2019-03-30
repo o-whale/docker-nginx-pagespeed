@@ -39,7 +39,11 @@ RUN apt-get install -y \
         linux-headers-amd64 \
         libjpeg62-turbo-dev \
         libcurl4-openssl-dev \
-        libpam-dev
+        libpam-dev \
+        software-properties-common
+
+RUN add-apt-repository ppa:certbot/certbot
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y python-certbot-nginx
 
 # Build libpng
 RUN cd /tmp && \

@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+# network
+if [ -z "$(docker network inspect --format='{{.Id}}' local)" ]; then
+  docker network create local
+fi
+
+name=${2:-nginx}
+
+case $1 in
+build*)
+  docker build -t owhale/nginx:latest .
+  ;;
+run*)
+  container_status=$(docker container inspect --format='{{.State.Status}}' $name)
+  if [ -z "$container_status" ]; then
+    docker run \
+      --name $name \
+      --network local \
+      --env-file .env \
+      -u root \
+      -p 8080:8080 \
+      -p 80:80 \
+      -p 443:443 \
+      -h $name@$(hostname) \
+      -dt owhale/nginx:latest
+  elif [ "$container_status" = "exited" ]; then
+    docker start $name
+  fi
+  docker exec \
+    -e TERM=xterm-256color \
+    -e COLUMNS=$(tput cols) \
+    -e LINES=$(tput lines) \
+    -it $name /bin/sh
+  ;;
+kill*)
+  docker rm -f $name
+  ;;
+*)
+  echo "You must specify a command: $ ./cli {command}"
+  echo "  run    - get a container"
+  echo "  kill   - destroy the container"
+  ;;
+esac

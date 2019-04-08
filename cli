@@ -17,6 +17,7 @@ run*)
     docker run \
       --name $name \
       --network local \
+      --restart always \
       --env-file .env \
       -u root \
       -v $(pwd)/data/letsencrypt:/etc/letsencrypt \

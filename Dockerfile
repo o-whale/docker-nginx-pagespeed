@@ -2,7 +2,7 @@ FROM debian:stretch-slim
 LABEL maintainer="Bluewhale <blue@owhale.com>"
 
 ARG MAKE_J=4
-ARG NGINX_VERSION=1.14.2
+ARG NGINX_VERSION=1.17.6
 ARG PAGESPEED_VERSION=1.13.35.2
 ARG LIBPNG_VERSION=1.6.36
 

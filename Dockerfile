@@ -69,20 +69,10 @@ RUN cd /tmp && \
         git clone git://github.com/yaoweibin/ngx_http_substitutions_filter_module.git && \
         git clone https://github.com/sto/ngx_http_auth_pam_module.git
 
-# Build ngx_http_lua_module
-RUN cd /tmp && \
-    git clone https://github.com/openresty/luajit2.git && \
-    git clone https://github.com/simplresty/ngx_devel_kit.git && \
-    git clone https://github.com/openresty/lua-nginx-module.git && \
-    cd luajit2 && \
-    make install --silent
-
 # Build Nginx with support for PageSpeed
 RUN cd /tmp && \
         curl -L http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz | tar -zx && \
         cd /tmp/nginx-${NGINX_VERSION} && \
-        export LUAJIT_LIB=/usr/local/lib && \
-        export LUAJIT_INC=/usr/local/include/luajit-2.1 && \
         LD_LIBRARY_PATH=/tmp/incubator-pagespeed-ngx-${PAGESPEED_VERSION}/usr/lib:/usr/lib ./configure \
         --sbin-path=/usr/sbin \
         --modules-path=/usr/lib/nginx \
@@ -110,13 +100,10 @@ RUN cd /tmp && \
         --without-http_scgi_module \
         --without-http_upstream_ip_hash_module \
         --prefix=/etc/nginx \
-        --with-ld-opt="-Wl,-rpath,/usr/local/lib" \
         --conf-path=/etc/nginx/nginx.conf \
         --http-log-path=/var/log/nginx/access.log \
         --error-log-path=/var/log/nginx/error.log \
         --pid-path=/var/run/nginx.pid \
-        --add-module=/tmp/ngx_devel_kit \
-        --add-module=/tmp/lua-nginx-module \
         --add-module=/tmp/nginx-module-vts \
         --add-module=/tmp/headers-more-nginx-module \
         --add-module=/tmp/ngx_http_substitutions_filter_module \
